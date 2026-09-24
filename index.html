@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
+    <title>Live Stream Player</title>
+    
+    <!-- Load HLS.js library to play .m3u8 files -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,7 +29,6 @@
         }
 
         .video-container {
-            position: relative;
             width: 100%;
             max-width: 800px;
             aspect-ratio: 16 / 9;
@@ -35,32 +38,48 @@
             overflow: hidden;
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Styling the native HTML5 video player */
+        video {
             width: 100%;
             height: 100%;
-            border: none;
+            outline: none;
         }
     </style>
 </head>
 <body>
 
-    <h1>Enjoy the Video</h1>
+    <h1>F1 Baku Stream</h1>
     
     <div class="video-container">
-        <!-- Added the sandbox attribute to block pop-ups -->
-        <iframe 
-            src="https://ntv.st/embed?t=MnpXSHBiRi93c3JVY085WlJOQUpVRmZ6M1Jkd1BOY2gxTC9OanJZanpTRUIxTFdiQmNnVzl4YVltZmFkYm1ucWtyNVFRVExoTzdyL2NrSGcrbWhCLzNWUnNWekVaUjRyV1kvcVBBMXdWMkZiSzltTE1DQWlWTzFQVXRvWkgwdGc~&autoplay=1&muted=1" 
-            width="800" 
-            height="450" 
-            frameborder="0" 
-            sandbox="allow-scripts allow-same-origin allow-presentation"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
+        <!-- Native HTML5 Video Element (muted for autoplay) -->
+        <video id="video-player" controls autoplay muted></video>
     </div>
+
+    <script>
+        const video = document.getElementById('video-player');
+        
+        // Your extracted source link
+        const videoSrc = 'https://lb7.strmd.st/secure/hzYoUTPZaQxBbFHXvZiPVYJCHpBzFHpA/hotel/stream/baku-city-circuit-free-practice-1-formula-1-1790238600/1/playlist.m3u8';
+
+        // Check if the browser supports HLS.js (Chrome, Firefox, Edge, etc.)
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            
+            // Auto-start the video once it is ready
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        } 
+        // Safari has built-in HLS support and doesn't need HLS.js
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play();
+            });
+        }
+    </script>
 
 </body>
 </html>
