@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Player</title>
     <style>
-        /* Basic styling for a modern, dark-themed page */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #121212;
@@ -25,19 +24,17 @@
             font-weight: 300;
         }
 
-        /* Responsive video container */
         .video-container {
             position: relative;
             width: 100%;
             max-width: 800px;
-            aspect-ratio: 16 / 9; /* Maintains the 800x450 ratio */
+            aspect-ratio: 16 / 9;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
             background-color: #000;
             border-radius: 8px;
             overflow: hidden;
         }
 
-        /* Makes the iframe fill the responsive container */
         .video-container iframe {
             position: absolute;
             top: 0;
@@ -53,15 +50,13 @@
     <h1>Enjoy the Video</h1>
     
     <div class="video-container">
-        <!-- 
-          Your embed code. 
-          I added &autoplay=1&muted=1 to the src URL to ensure it auto-starts. 
-        -->
+        <!-- Added the sandbox attribute to block pop-ups -->
         <iframe 
             src="https://ntv.st/embed?t=MnpXSHBiRi93c3JVY085WlJOQUpVRmZ6M1Jkd1BOY2gxTC9OanJZanpTRUIxTFdiQmNnVzl4YVltZmFkYm1ucWtyNVFRVExoTzdyL2NrSGcrbWhCLzNWUnNWekVaUjRyV1kvcVBBMXdWMkZiSzltTE1DQWlWTzFQVXRvWkgwdGc~&autoplay=1&muted=1" 
             width="800" 
             height="450" 
             frameborder="0" 
+            sandbox="allow-scripts allow-same-origin allow-presentation"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
         </iframe>
