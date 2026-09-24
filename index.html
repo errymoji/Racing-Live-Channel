@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        /* Basic styling for a modern, dark-themed page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9; /* Maintains the 800x450 ratio */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Makes the iframe fill the responsive container */
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Enjoy the Video</h1>
+    
+    <div class="video-container">
+        <!-- 
+          Your embed code. 
+          I added &autoplay=1&muted=1 to the src URL to ensure it auto-starts. 
+        -->
+        <iframe 
+            src="https://ntv.st/embed?t=MnpXSHBiRi93c3JVY085WlJOQUpVRmZ6M1Jkd1BOY2gxTC9OanJZanpTRUIxTFdiQmNnVzl4YVltZmFkYm1ucWtyNVFRVExoTzdyL2NrSGcrbWhCLzNWUnNWekVaUjRyV1kvcVBBMXdWMkZiSzltTE1DQWlWTzFQVXRvWkgwdGc~&autoplay=1&muted=1" 
+            width="800" 
+            height="450" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+</body>
+</html>
